@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 380px;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      background: #f8fafc;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1e40af;
+      margin-bottom: 8px;
+    }
+    
+    .subtitle {
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #374151;
+      font-size: 14px;
+    }
+    
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    .toggle-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .toggle-info h3 {
+      margin: 0 0 4px 0;
+      font-size: 16px;
+      color: #111827;
+    }
+    
+    .toggle-info p {
+      margin: 0;
+      font-size: 13px;
+      color: #6b7280;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 24px;
+      background: #d1d5db;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .toggle-switch.active {
+      background: #10b981;
+    }
+    
+    .toggle-slider {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .toggle-switch.active .toggle-slider {
+      transform: translateX(24px);
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .btn:hover {
+      background: #2563eb;
+    }
+    
+    .btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+    
+    .status {
+      margin-top: 12px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      text-align: center;
+    }
+    
+    .status.success {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+    
+    .status.error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+    
+    .help-text {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    
+    .setup-guide {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .setup-guide h4 {
+      margin: 0 0 12px 0;
+      color: #111827;
+      font-size: 14px;
+    }
+    
+    .setup-guide ol {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 13px;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+    
+    .setup-guide li {
+      margin-bottom: 6px;
+    }
+    
+    .setup-guide a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    
+    .setup-guide a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">🔧 LeetSync</div>
+    <div class="subtitle">Automatically sync LeetCode solutions to GitHub</div>
+  </div>
+
+  <div id="setup-section" class="setup-guide">
+    <h4>🚀 Quick Setup Guide</h4>
+    <ol>
+      <li>Create a GitHub repository for your solutions</li>
+      <li>Generate a <a href="https://github.com/settings/tokens/new" target="_blank">Personal Access Token</a> with "repo" permissions</li>
+      <li>Fill in your details below</li>
+      <li>Enable LeetSync and start solving!</li>
+    </ol>
+  </div>
+
+  <div class="form-group">
+    <label for="githubUsername">GitHub Username</label>
+    <input type="text" id="githubUsername" placeholder="your-github-username">
+  </div>
+
+  <div class="form-group">
+    <label for="githubRepo">Repository Name</label>
+    <input type="text" id="githubRepo" placeholder="leetcode-solutions">
+    <div class="help-text">The repository where your solutions will be stored</div>
+  </div>
+
+  <div class="form-group">
+    <label for="githubToken">GitHub Personal Access Token</label>
+    <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx">
+    <div class="help-text">
+      <a href="https://github.com/settings/tokens/new" target="_blank">Generate token</a> with "repo" permissions
+    </div>
+  </div>
+
+  <div class="toggle-section">
+    <div class="toggle-info">
+      <h3>Enable LeetSync</h3>
+      <p>Automatically sync accepted solutions</p>
+    </div>
+    <div class="toggle-switch" id="enableToggle">
+      <div class="toggle-slider"></div>
+    </div>
+  </div>
+
+  <button class="btn" id="saveBtn">Save Configuration</button>
+
+  <div id="status" class="status" style="display: none;"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
